@@ -14,11 +14,9 @@ void get_URL(const string &host, const string &path) {
     // then request the URL path given in the "path" string.
     TCPSocket socket;
     socket.connect(Address(host, "http"));
-    string info =   "GET " + path + " HTTP/1.1\r\n" + 
-                    "Host: " + host + "\r\n" +
-                    "Connection: close\r\n\r\n";
+    string info = "GET " + path + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "Connection: close\r\n\r\n";
     socket.write(info);
-    socket.shutdown(SHUT_WR); // 不能少，参考https://www.cnblogs.com/JohnABC/p/7238241.html
+    socket.shutdown(SHUT_WR);  // 不能少，参考https://www.cnblogs.com/JohnABC/p/7238241.html
 
     // Then you'll need to print out everything the server sends back,
     // (not just one call to read() -- everything) until you reach

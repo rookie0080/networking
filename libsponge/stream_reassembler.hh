@@ -5,17 +5,37 @@
 
 #include <cstdint>
 #include <string>
+#include <set>  
+
+
+
+// 小于号的运算符重载，用于set中元素的排序
 
 //! \brief A class that assembles a series of excerpts from a byte stream (possibly out of order,
 //! possibly overlapping) into an in-order byte stream.
 class StreamReassembler {
-  private:
-    // Your code here -- add private members as necessary.
+    struct Node{
+        std::string data;
+        size_t index;
+        Node(std::string s, size_t x) : data(s), index(x) {}
 
+        bool operator<(const struct Node b) const { // 为什么要加上const？
+            return this->index < b.index;   
+        }
+    };
+    
+private:
+    // Your code here -- add private members as necessary.
     ByteStream _output;  //!< The reassembled in-order byte stream
     size_t _capacity;    //!< The maximum number of bytes
+    size_t _bytes_unassembled;
+    std::set<struct Node> _substr_waiting;
+    bool _flag_eof;
+    size_t _pos_eof;
 
-  public:
+    void insert_substr_waiting(const struct Node &node);
+
+public:
     //! \brief Construct a `StreamReassembler` that will store up to `capacity` bytes.
     //! \note This capacity limits both the bytes that have been reassembled,
     //! and those that have not yet been reassembled.

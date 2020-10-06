@@ -10,6 +10,44 @@ using namespace std;
 
 int main() {
     try {
+        // 如果这个用例对了，那many用例的逻辑基本就不会错
+        // {
+        //     ReassemblerTestHarness test{65000};
+        //     test.execute(SubmitSegment{"012", 20});
+        //     test.execute(SubmitSegment{"901", 59});
+        //     test.execute(SubmitSegment{"345", 63});
+        //     test.execute(SubmitSegment{"678", 56});
+        //     test.execute(SubmitSegment{"123", 31});
+        //     test.execute(SubmitSegment{"678", 66});
+        //     test.execute(SubmitSegment{"789", 37});
+        //     test.execute(SubmitSegment{"2", 62});
+        //     test.execute(SubmitSegment{"234", 72});
+        //     test.execute(SubmitSegment{"45", 44});
+        //     test.execute(SubmitSegment{"456", 4});
+        //     test.execute(SubmitSegment{"3", 13});
+        //     test.execute(SubmitSegment{"4567", 14});
+        //     test.execute(SubmitSegment{"9012", 9});
+        //     test.execute(SubmitSegment{"4", 34});
+        //     test.execute(SubmitSegment{"2345", 52});
+        //     test.execute(SubmitSegment{"78", 7});
+        //     test.execute(SubmitSegment{"01", 70});
+        //     test.execute(SubmitSegment{"6", 36});
+        //     test.execute(SubmitSegment{"0123", 0});
+        //     test.execute(SubmitSegment{"9", 69});
+        //     test.execute(SubmitSegment{"6", 26});
+        //     test.execute(SubmitSegment{"5", 35});
+        //     test.execute(SubmitSegment{"7890", 27});
+        //     test.execute(SubmitSegment{"345", 23});
+        //     test.execute(SubmitSegment{"9", 19});
+        //     test.execute(SubmitSegment{"8", 18});
+        //     test.execute(SubmitSegment{"0123", 40});
+        //     test.execute(SubmitSegment{"8901", 48});
+        //     test.execute(SubmitSegment{"67", 46});
+
+        //     test.execute(BytesAssembled(75));
+        //     test.execute(UnassembledBytes{0});
+        // }
+
         {
             ReassemblerTestHarness test{65000};
 

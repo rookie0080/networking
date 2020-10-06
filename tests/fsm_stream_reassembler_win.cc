@@ -17,6 +17,8 @@ using namespace std;
 static constexpr unsigned NREPS = 32;
 static constexpr unsigned NSEGS = 128;
 static constexpr unsigned MAX_SEG_LEN = 2048;
+// static constexpr unsigned MAX_SEG_LEN = 1024;    // 证明我的暴力算法可以正常工作
+
 
 string read(StreamReassembler &reassembler) {
     return reassembler.stream_out().read(reassembler.stream_out().buffer_size());

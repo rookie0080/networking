@@ -16,7 +16,9 @@ using namespace std;
 
 static constexpr unsigned NREPS = 32;
 static constexpr unsigned NSEGS = 128;
+// static constexpr unsigned NSEGS = 30;
 static constexpr unsigned MAX_SEG_LEN = 2048;
+// static constexpr unsigned MAX_SEG_LEN = 5;    // 减少输入规模证明我的暴力算法是正确的
 
 string read(StreamReassembler &reassembler) {
     return reassembler.stream_out().read(reassembler.stream_out().buffer_size());
@@ -30,6 +32,8 @@ int main() {
         for (unsigned rep_no = 0; rep_no < NREPS; ++rep_no) {
             StreamReassembler buf{MAX_SEG_LEN * NSEGS};
 
+            // getchar();
+
             vector<tuple<size_t, size_t>> seq_size;
             size_t offset = 0;
             for (unsigned i = 0; i < NSEGS; ++i) {
@@ -37,16 +41,17 @@ int main() {
                 seq_size.emplace_back(offset, size);
                 offset += size;
             }
-            shuffle(seq_size.begin(), seq_size.end(), rd);
+            shuffle(seq_size.begin(), seq_size.end(), rd);  // 打乱seq_size中元素的顺序
 
             string d(offset, 0);
             generate(d.begin(), d.end(), [&] { return rd(); });
+            cout << "rep_no: " << rep_no << endl;
 
             for (auto [off, sz] : seq_size) {
                 string dd(d.cbegin() + off, d.cbegin() + off + sz);
+                // cout << "total: " << d.size() << "\toff: " << off << "\tsize:" << sz << "\t";
                 buf.push_substring(move(dd), off, off + sz == offset);
             }
-
             auto result = read(buf);
             if (buf.stream_out().bytes_written() != offset) {  // read bytes
                 throw runtime_error("test 1 - number of bytes RX is incorrect");

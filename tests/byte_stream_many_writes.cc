@@ -21,8 +21,8 @@ int main() {
             size_t acc = 0;
             for (size_t i = 0; i < NREPS; ++i) {
                 const size_t size = MIN_WRITE + (rd() % (MAX_WRITE - MIN_WRITE));
-                string d(size, 0);
-                generate(d.begin(), d.end(), [&] { return 'a' + (rd() % 26); });
+                string d(size, 0);  
+                generate(d.begin(), d.end(), [&] { return 'a' + (rd() % 26); }); // 产生一个随机长度的随机字符串
 
                 test.execute(Write{d}.with_bytes_written(size));
                 acc += size;
