@@ -11,6 +11,7 @@ using namespace std;
 
 int main() {
     try {
+        cout << "ok here\n";
         // Unwrap the first byte after ISN
         test_should_be(unwrap(WrappingInt32(1), WrappingInt32(0), 0), 1ul);
         // Unwrap the first byte after the first wrap
@@ -36,6 +37,7 @@ int main() {
         test_should_be(unwrap(WrappingInt32(UINT32_MAX), WrappingInt32(1ul << 31), 0),
                        static_cast<uint64_t>(UINT32_MAX) >> 1);
     } catch (const exception &e) {
+        // cerr << "here  ff\n";
         cerr << e.what() << endl;
         return 1;
     }

@@ -7,10 +7,6 @@
 #include <string>
 #include <set>  
 
-
-
-// 小于号的运算符重载，用于set中元素的排序
-
 //! \brief A class that assembles a series of excerpts from a byte stream (possibly out of order,
 //! possibly overlapping) into an in-order byte stream.
 class StreamReassembler {
