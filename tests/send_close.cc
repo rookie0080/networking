@@ -44,8 +44,11 @@ int main() {
             test.execute(Close{});
             test.execute(ExpectState{TCPSenderStateSummary::FIN_SENT});
             test.execute(ExpectSegment{}.with_fin(true).with_seqno(isn + 1));
+            cout << "here!!" << endl;
             test.execute(AckReceived{WrappingInt32{isn + 2}});
+            cout << "flag" << endl;
             test.execute(ExpectState{TCPSenderStateSummary::FIN_ACKED});
+            cout << "flag 2" << endl;
             test.execute(ExpectBytesInFlight{0});
             test.execute(ExpectNoSegment{});
         }

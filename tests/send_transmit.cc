@@ -101,7 +101,6 @@ int main() {
             TCPConfig cfg;
             WrappingInt32 isn(rd());
             cfg.fixed_isn = isn;
-
             TCPSenderTestHarness test{"Window filling", cfg};
             test.execute(ExpectSegment{}.with_no_flags().with_syn(true).with_payload_size(0).with_seqno(isn));
             test.execute(AckReceived{WrappingInt32{isn + 1}}.with_win(3));
@@ -111,7 +110,9 @@ int main() {
             test.execute(ExpectSegment{}.with_data("012"));
             test.execute(ExpectNoSegment{});
             test.execute(ExpectSeqno{WrappingInt32{isn + 1 + 3}});
+            cout << "from here" << endl;
             test.execute(AckReceived{WrappingInt32{isn + 1 + 3}}.with_win(3));
+            cout << "end" << endl;
             test.execute(ExpectBytesInFlight{3});
             test.execute(ExpectSegment{}.with_data("345"));
             test.execute(ExpectNoSegment{});
